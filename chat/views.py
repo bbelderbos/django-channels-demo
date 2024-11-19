@@ -7,8 +7,13 @@ from .models import Ticket
 
 @login_required
 def ticket_list(request):
+    return render(request, "ticket_list.html")
+
+
+@login_required
+def get_tickets(request):
     tickets = Ticket.objects.all()
-    return render(request, "ticket_list.html", {"tickets": tickets})
+    return render(request, "_tickets.html", {"tickets": tickets})
 
 
 @login_required

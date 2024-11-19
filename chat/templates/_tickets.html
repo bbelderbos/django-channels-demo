@@ -1,0 +1,5 @@
+{% for ticket in tickets %}
+  {% include '_ticket.html' with ticket=ticket %}
+{% empty %}
+  <li>No tickets found</li>
+{% endfor %}

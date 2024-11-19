@@ -4,13 +4,10 @@
 
 {% block content %}
     <h2>Your Tickets</h2>
-    <ul id="ticket-list">
-      {% for ticket in tickets %}
-        {% include '_ticket.html' with ticket=ticket %}
-      {% empty %}
-        <li>No tickets found</li>
-      {% endfor %}
+    <ul id="ticket-list" class="fa-ul"
+      hx-get="{% url "get_tickets" %}" hx-trigger="load, every 3s" hx-swap="innerHTML">
     </ul>
+
     <form hx-post="{% url 'submit_ticket' %}" hx-target="#ticket-list" hx-swap="beforeend" hx-on="htmx:afterRequest: this.reset()">
         {% csrf_token %}
         <input type="text" name="title" placeholder="Enter ticket title" />
