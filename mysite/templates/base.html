@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Help Desk{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/htmx.org"></script> <!-- HTMX -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 0.5em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        main {
+            padding: 1em;
+            max-width: 800px;
+            margin: auto;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+          <a href="{% url 'ticket_list' %}"><i class="fas fa-headset"></i> Pybites Help Desk </a>
+        </h1>
+
+        <p>
+          {% if user.is_authenticated %}
+            <span>Welcome back <strong>{{ user.username }}</strong></span>
+          {% endif %}
+        </p>
+    </header>
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Pybites Help Desk</p>
+    </footer>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
