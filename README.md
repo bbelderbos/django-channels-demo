@@ -31,12 +31,21 @@ The app allows users to:
 
 5. Run Redis: `docker run -it --rm --name redis -p 6379:6379 redis`
 
-6. Access the app: [http://localhost:8000](http://localhost:8000)
+6. Make two super users to test it out (app does not support sign up yet):
+
+```
+$ echo "from django.contrib.auth.models import User; User.objects.create_superuser('fox', 'fox@xfiles.com', 'truth')" | uv run python manage.py shell
+$ echo "from django.contrib.auth.models import User; User.objects.create_superuser('scully', 'scully@xfiles.com', 'science')" | uv run python manage.py shell
+```
+
+7. Access the app: [http://localhost:8000](http://localhost:8000)
 
 ## Possible Enhancements
 
 - Add user authentication for role-based access (e.g., Support vs. Customers).
 
 - Implement login and sign-up functionality.
+
+- Environment variables for settings.
 
 - Improve styling with Tailwind CSS or similar frameworks.
